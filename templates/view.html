@@ -1,0 +1,25 @@
+{% extends 'template.html' %}
+{% block conteudo %}
+    <div>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    {% for label in labels %}
+                        <th>{{ label }}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                 {% for row in values %}
+                <tr>
+                    {% for value in row %}
+                        <td>{{ value }}</td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+
+{% endblock %}
