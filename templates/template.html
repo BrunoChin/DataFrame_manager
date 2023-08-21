@@ -4,9 +4,21 @@
     <meta charset="UTF-8">
     <title>{{title}}</title>
      <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.css') }}" >
+    <style>
+        .outer {
+            width: 90%;
+            height: 300px;
+            white-space: nowrap;
+            position: relative;
+            overflow-x: scroll;
+            overflow-y: scroll;
+            -webkit-overflow-scrolling: touch;
+        }
+
+    </style>
 </head>
 <body>
-  <div class="container text-center">
+  <div class="container">
 
       {% block conteudo %} {% endblock %}
 

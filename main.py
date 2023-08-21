@@ -10,7 +10,7 @@ def index():
 @app.route('/view')
 def view():
     df = load_dataFrame()
-    values = df.head().values.tolist()
+    values = df.head(10).values.tolist()
     return render_template('view.html', labels=df.keys(), values=values)
 
 def load_dataFrame():

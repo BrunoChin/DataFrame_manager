@@ -1,6 +1,13 @@
 {% extends 'template.html' %}
 {% block conteudo %}
-    <div>
+
+    <form class="py-3">
+      <div class="form-group">
+        <label for="file">Excolha o arquivo:</label>
+        <input type="file" class="form-control-file" id="file">
+      </div>
+    </form>
+    <div class="outer border">
         <table class="table table-bordered">
             <thead>
                 <tr>
