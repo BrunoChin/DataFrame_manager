@@ -1,8 +1,10 @@
 {% extends 'template.html' %}
 {% block conteudo %}
-      <h1>Dataframe Manager</h1>
+      <div class="text-center">
+            <h1>Dataframe Manager</h1>
 
-      <div>
-            <a href="{{url_for('view')}}"><input class="btn btn-outline-primary col-4" type="button" value="DataFrame view"></a>
+            <div>
+                  <a href="{{url_for('load_dataFrame')}}"><input class="btn btn-outline-primary col-4" type="button" value="DataFrame view"></a>
+            </div>
       </div>
 {% endblock %}
