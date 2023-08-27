@@ -28,43 +28,25 @@
         </table>
     </div>
 
-    <div class="row m-2">
-        <form method="get" id="checkNull">
-            <input type="submit" value="valor nulo" >
-        </form>
+    <div class="row m-2 p-1">
+        <div class="col-2">
+            <form method="get" id="checkNull">
+                <input class="btn btn-primary" type="submit" value="valores nulo" style="width: 150px;">
+            </form>
+        </div>
+        <div class="col-2">
+            <input class="btn btn-primary" value="Excluir coluna" style="width: 150px;">
+        </div>
+
+        <div class="col-2">
+            <input class="btn btn-primary" value="Excluir linha" style="width: 150px;">
+        </div>
     </div>
 
     <div class="outer" id="response_area" style="border-style: solid; font-size: 12px">
 
     </div>
 
-    <script type="text/javascript">
-        window.onload = function() {
-            const check_null = document.getElementById("checkNull")
-            const response_area = document.getElementById("response_area")
-
-            check_null.onsubmit = function(event) {
-                event.preventDefault();
-                fetch("/checknull", {
-                    method: "GET"
-                })
-                .then(response => {
-                    return response.blob()
-                })
-                .then(() => {
-                    fetch("/get_responce", {
-                        method: "GET"
-                    })
-                    .then(response => {
-                        return response.text();
-                    })
-                    .then(html => {
-                        console.log(html)
-                        response_area.innerHTML = html
-                    })
-                })
-            }
-        }
-    </script>
+    <script type="text/javascript" src="{{ url_for('static', filename='script.js') }}"></script>
 
 {% endblock %}
