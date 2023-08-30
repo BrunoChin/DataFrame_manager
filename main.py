@@ -22,8 +22,6 @@ def load_dataFrame():
     global df
     df = pd.read_csv("static/exemple.csv")
 
-    print("ok")
-
     return redirect(url_for('view'))
 
 @app.route('/checknull')
@@ -43,7 +41,24 @@ def check_null():
 @app.route('/get_responce')
 def get_responce():
     global response
-    print(response)
     return render_template("responce.html", resp=response)
 
+@app.route('/drop_column')
+def drop_column():
+    global df
+
+    df = df.drop(columns=df.columns[0])
+    return redirect(url_for('view'))
+
+@app.route('/describe')
+def describe():
+    global df
+
+    descricao = df.describe()
+    columns = descricao.keys()
+    rows = ["count", "mean", "std", "min", "25%", "50%", "75%", "max"]
+    return render_template("describe_view.html", desc=descricao.values.tolist(), columns=columns, rows=rows)
+
 app.run(debug=True)
+
+

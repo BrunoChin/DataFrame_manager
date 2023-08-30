@@ -9,4 +9,10 @@
 
 ## In progress
 
+- Funcão describe
+- Função info
+
+## Backlog
+
 - Deletar colunas e linhas
+- 
