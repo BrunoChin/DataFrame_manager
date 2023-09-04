@@ -1,5 +1,7 @@
 import pandas as pd
 from flask import Flask, render_template, url_for, redirect, request
+import io
+
 
 df = pd.DataFrame()
 
@@ -41,7 +43,7 @@ def check_null():
 @app.route('/get_responce')
 def get_responce():
     global response
-    return render_template("responce.html", resp=response)
+    return render_template("null_values_view.html", resp=response)
 
 @app.route('/drop_column')
 def drop_column():
@@ -58,6 +60,15 @@ def describe():
     columns = descricao.keys()
     rows = ["count", "mean", "std", "min", "25%", "50%", "75%", "max"]
     return render_template("describe_view.html", desc=descricao.values.tolist(), columns=columns, rows=rows)
+
+@app.route('/info')
+def info():
+    global df
+
+    buffer = io.StringIO()
+
+    df.info(buf=buffer)
+    return render_template("info_view.html", values=buffer.getvalue().split('\n'))
 
 app.run(debug=True)
 
