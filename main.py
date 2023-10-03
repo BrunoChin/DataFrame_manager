@@ -20,9 +20,11 @@ def view():
     return render_template('view.html', labels=df.keys(), values=values)
 
 @app.route('/load')
-def load_dataFrame():
+def load_dataFrame(url_file: str = None):
     global df
-    df = pd.read_csv("static/exemple.csv")
+
+    if df.empty:
+        df = pd.read_csv("static/files_data/exemple.csv")
 
     return redirect(url_for('view'))
 
@@ -69,6 +71,15 @@ def info():
 
     df.info(buf=buffer)
     return render_template("info_view.html", values=buffer.getvalue().split('\n'))
+
+@app.route('/upload_file', methods=['post', ])
+def upload_file():
+    global df
+    file = request.files['file']
+    url = "static/files_data" + file.filename
+    file.save(url)
+    df = pd.read_csv(url)
+    return redirect(url_for('view'))
 
 app.run(debug=True)
 

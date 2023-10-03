@@ -1,55 +1,63 @@
 {% extends 'template.html' %}
 {% block conteudo %}
 
-    <form class="py-3">
-      <div class="form-group">
-        <label for="file">Escolher arquivo:</label> <br>
-        <input type="file" class="form-control-file" id="file" name="file" disabled>
-      </div>
-    </form>
-    <div class="outer border">
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    {% for label in labels %}
-                        <th>{{ label }}</th>
-                    {% endfor %}
-                </tr>
-            </thead>
-            <tbody>
-                 {% for row in values %}
-                <tr>
-                    {% for value in row %}
-                        <td>{{ value }}</td>
-                    {% endfor %}
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
-
-    <div class="row m-2 p-1">
-        <div class="col-2">
-            <form method="get" id="checkNull">
-                <input class="btn btn-primary" type="submit" value="valores nulo" style="width: 150px;">
+    <div class="row">
+        <div class="col-3">
+            <form id="file_forme" method="post" enctype="multipart/form-data" action="/upload_file">
+              <div class="form-group">
+                <label for="file">Escolher arquivo:</label> <br>
+                <input type="file" class="form-control-file" id="file" name="file" accept=".csv">
+                <input type="submit" value="Enviar arquivo">
+              </div>
             </form>
         </div>
-        <div class="col-2">
-            <input type="button" id="btn_describe" class="btn btn-primary" value="Descrição" style="width: 150px;">
-        </div>
-        <div class="col-2">
-            <input type="button" id="btn_info" class="btn btn-primary" value="Info" style="width: 150px;">
-        </div>
-        <div class="col-2">
-            <input type="button" class="btn btn-primary" value="Excluir coluna" style="width: 150px;" src="/drop_column">
-        </div>
+        <div class="col-9">
+            <div class="outer border">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            {% for label in labels %}
+                                <th>{{ label }}</th>
+                            {% endfor %}
+                        </tr>
+                    </thead>
+                    <tbody>
+                         {% for row in values %}
+                        <tr>
+                            {% for value in row %}
+                                <td>{{ value }}</td>
+                            {% endfor %}
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
 
-        <div class="col-2">
-            <input class="btn btn-primary" value="Excluir linha" style="width: 150px;">
-        </div>
-    </div>
+            <div class="row m-2 p-1">
+                <div class="col-2">
+                    <form method="get" id="checkNull">
+                        <input class="btn btn-primary" type="submit" value="valores nulo" style="width: 150px;">
+                    </form>
+                </div>
+                <div class="col-2">
+                    <input type="button" id="btn_describe" class="btn btn-primary" value="Descrição" style="width: 150px;">
+                </div>
+                <div class="col-2">
+                    <input type="button" id="btn_info" class="btn btn-primary" value="Info" style="width: 150px;">
+                </div>
+                <div class="col-2">
+                    <input type="button" class="btn btn-primary" value="Excluir coluna" style="width: 150px;" src="/drop_column">
+                </div>
 
-    <div class="outer" id="response_area" style="border-style: solid; font-size: 12px">
+                <div class="col-2">
+                    <input class="btn btn-primary" value="Excluir linha" style="width: 150px;">
+                </div>
+            </div>
+
+            <div class="outer" id="response_area" style="border-style: solid; font-size: 12px">
+
+            </div>
+        </div>
 
     </div>
 
