@@ -2,17 +2,36 @@
 {% block conteudo %}
 
     <div class="row">
-        <div class="col-3">
-            <form id="file_forme" method="post" enctype="multipart/form-data" action="/upload_file">
-              <div class="form-group">
-                <label for="file">Escolher arquivo:</label> <br>
-                <input type="file" class="form-control-file" id="file" name="file" accept=".csv">
-                <input type="submit" value="Enviar arquivo">
+        <div class="col-3 border-right border-dark">
+
+            <form class="m-2" id="file_form" method="post" enctype="multipart/form-data" action="/upload_file">
+                <p class="">Upload de arquivos: </p>
+                <div class="input-group">
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="file" name="file" accept="text/csv">
+                        <label class="custom-file-label" for="file">Arquivo...</label>
+                    </div>
+                    <div class="input-group-append">
+                        <button class="btn btn-success" type="submit">Enviar</button>
+                    </div>
               </div>
+            </form>
+            <form class="m-2 border-top border-dark" action="/load" method="post">
+                <p>Selecionar arquivo: </p>
+                <div class="input-group">
+                    <select class="custom-select" id="file_select" name="file_select">
+                        {% for file in files %}
+                        <option value="{{ file }}"> {{ file }} </option>
+                        {% endfor %}
+                    </select>
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="submit">Enviar</button>
+                    </div>
+                </div>
             </form>
         </div>
         <div class="col-9">
-            <div class="outer border">
+            <div class="outer border border-dark mt-2">
                 <table class="table table-bordered">
                     <thead>
                         <tr>
@@ -33,30 +52,36 @@
                 </table>
             </div>
 
-            <div class="row m-2 p-1">
-                <div class="col-2">
-                    <form method="get" id="checkNull">
-                        <input class="btn btn-primary" type="submit" value="valores nulo" style="width: 150px;">
-                    </form>
+            <div class="row mt-2 ml-1">
+                <div class="col-4 border border-dark">
+                    <div class="m-2 p-1">
+                        <div class="m-1">
+                            <form method="get" id="checkNull">
+                                <input class="btn btn-primary" type="submit" value="valores nulo" style="width: 150px;">
+                            </form>
+                        </div>
+                        <div class="m-1">
+                            <input type="button" id="btn_describe" class="btn btn-primary" value="Descrição" style="width: 150px;">
+                        </div>
+                        <div class="m-1">
+                            <input type="button" id="btn_info" class="btn btn-primary" value="Info" style="width: 150px;">
+                        </div>
+                        <div class="m-1">
+                            <input type="button" class="btn btn-primary" value="Excluir coluna" style="width: 150px;" src="/drop_column">
+                        </div>
+                        <div class="m-1">
+                            <input class="btn btn-primary" value="Excluir linha" style="width: 150px;">
+                        </div>
+                    </div>
                 </div>
-                <div class="col-2">
-                    <input type="button" id="btn_describe" class="btn btn-primary" value="Descrição" style="width: 150px;">
-                </div>
-                <div class="col-2">
-                    <input type="button" id="btn_info" class="btn btn-primary" value="Info" style="width: 150px;">
-                </div>
-                <div class="col-2">
-                    <input type="button" class="btn btn-primary" value="Excluir coluna" style="width: 150px;" src="/drop_column">
-                </div>
+                <div class="col-8">
+                    <div class="outer border border-dark" id="response_area">
 
-                <div class="col-2">
-                    <input class="btn btn-primary" value="Excluir linha" style="width: 150px;">
+                    </div>
                 </div>
             </div>
 
-            <div class="outer" id="response_area" style="border-style: solid; font-size: 12px">
 
-            </div>
         </div>
 
     </div>

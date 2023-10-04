@@ -1,6 +1,7 @@
 import pandas as pd
 from flask import Flask, render_template, url_for, redirect, request
 import io
+import os
 
 
 df = pd.DataFrame()
@@ -16,12 +17,20 @@ def index():
 
 @app.route('/view')
 def view():
+    files = []
+    for _, _, f in os.walk(os.getcwd()+"/static/files_data/"):
+        files = f
     values = df.head(10).values.tolist()
-    return render_template('view.html', labels=df.keys(), values=values)
+    return render_template('view.html', labels=df.keys(), values=values, files=files)
 
-@app.route('/load')
-def load_dataFrame(url_file: str = None):
+@app.route('/load', methods=['post', 'get'])
+def load_dataframe():
     global df
+
+    if 'file_select' in request.form.keys():
+        file_select = request.form['file_select']
+        print(file_select)
+        df = pd.read_csv(f"static/files_data/{file_select}")
 
     if df.empty:
         df = pd.read_csv("static/files_data/exemple.csv")
@@ -76,11 +85,9 @@ def info():
 def upload_file():
     global df
     file = request.files['file']
-    url = "static/files_data" + file.filename
+    url = "static/files_data/" + file.filename
     file.save(url)
     df = pd.read_csv(url)
     return redirect(url_for('view'))
 
 app.run(debug=True)
-
-
