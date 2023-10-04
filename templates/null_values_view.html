@@ -1,21 +1,27 @@
+<table class="table">
+    <thead>
 
+    </thead>
+    <tbody>
 {% for value in resp %}
-    {% if loop.index0 % 4 == 0 %}
+    {% if loop.index0 % 3 == 0 %}
         {% if loop.index0 == 0 %}
-            <ul class="list-group list-group-horizontal-md">
+            <tr >
         {% else %}
-            </ul>
-            <ul class="list-group list-group-horizontal-md">
+            </tr>
+            <tr>
         {% endif %}
     {%endif%}
     {% if value[1] == 0 %}
-        <li class="list-group-item list-group-item-success col-md-3" style="font-size: 12px">
+        <td class="table-success" scope="col" style="font-size: 12px">
             {{ value[0] }} :  {{value[1]}}
-        </li>
+        </td>
     {% else %}
-        <li class="list-group-item list-group-item-danger col-md-3" style="font-size: 12px">
+        <td class="table-danger" scope="col" style="font-size: 12px">
             {{ value[0] }} :  {{value[1]}}
-        </li>
+        </td>
     {% endif %}
 {% endfor %}
-            </ul>
+       </tbody>
+    </tr>
+</table>

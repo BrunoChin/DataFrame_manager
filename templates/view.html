@@ -12,7 +12,7 @@
                         <label class="custom-file-label" for="file">Arquivo...</label>
                     </div>
                     <div class="input-group-append">
-                        <button class="btn btn-success" type="submit">Enviar</button>
+                        <button class="btn btn-secondary" type="submit">Enviar</button>
                     </div>
               </div>
             </form>
@@ -25,7 +25,7 @@
                         {% endfor %}
                     </select>
                     <div class="input-group-append">
-                        <button class="btn btn-outline-secondary" type="submit">Enviar</button>
+                        <button class="btn btn-secondary" type="submit">Enviar</button>
                     </div>
                 </div>
             </form>
@@ -52,29 +52,29 @@
                 </table>
             </div>
 
-            <div class="row mt-2 ml-1">
-                <div class="col-4 border border-dark">
-                    <div class="m-2 p-1">
-                        <div class="m-1">
-                            <form method="get" id="checkNull">
-                                <input class="btn btn-primary" type="submit" value="valores nulo" style="width: 150px;">
+            <div class="row mt-2">
+                <div class="col-3">
+                    <div class="btn-group-vertical w-100">
+                        <div class="mt-1 w-100">
+                            <input type="button" id="btn_describe" class="btn btn-secondary" value="Descrição">
+                        </div>
+                        <div class="mt-1 w-100">
+                            <input type="button" id="btn_info" class="btn btn-secondary" value="Info">
+                        </div>
+                        <div class="mt-1 w-100">
+                            <form class="w-100" method="get" id="checkNull">
+                                <input class="btn btn-secondary" type="submit" value="valores nulo">
                             </form>
                         </div>
-                        <div class="m-1">
-                            <input type="button" id="btn_describe" class="btn btn-primary" value="Descrição" style="width: 150px;">
+                        <div class="mt-1 w-100">
+                            <input type="button" class="btn btn-secondary" value="Excluir linha">
                         </div>
-                        <div class="m-1">
-                            <input type="button" id="btn_info" class="btn btn-primary" value="Info" style="width: 150px;">
-                        </div>
-                        <div class="m-1">
-                            <input type="button" class="btn btn-primary" value="Excluir coluna" style="width: 150px;" src="/drop_column">
-                        </div>
-                        <div class="m-1">
-                            <input class="btn btn-primary" value="Excluir linha" style="width: 150px;">
+                        <div class="mt-1 w-100">
+                            <input type="button" class="btn btn-secondary" value="Excluir coluna" src="/drop_column">
                         </div>
                     </div>
                 </div>
-                <div class="col-8">
+                <div class="col-9">
                     <div class="outer border border-dark" id="response_area">
 
                     </div>
